@@ -1,0 +1,38 @@
+{
+    "name": "@pppicado/structexe",
+    "version": "0.1.0",
+    "description": "Hierarchical mutagenic & deep proxy reactive data structures (EHM&DPC)",
+    "author": "Pedro Pablo Picado Sánchez",
+    "license": "MIT",
+    "main": "./cjs/index.js",
+    "module": "./esm/index.js",
+    "types": "./types/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./types/index.d.ts",
+            "import": "./esm/index.js",
+            "require": "./cjs/index.js",
+            "default": "./esm/index.js"
+        }
+    },
+    "files": [
+        "esm",
+        "cjs",
+        "types",
+        "README.md"
+    ],
+    "keywords": [
+        "proxy",
+        "reactive",
+        "deep-proxy",
+        "hierarchical",
+        "data-structures",
+        "observable",
+        "typescript"
+    ],
+    "repository": {
+        "type": "git",
+        "url": ""
+    },
+    "sideEffects": false
+}
