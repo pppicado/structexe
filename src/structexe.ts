@@ -7,27 +7,31 @@
 ** ╚══════╝    ╚═╝    ╚═╝  ╚═╝  ╚═════╝   ╚═════╝    ╚═╝       ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝ **
 *********************************************************************************************************/
 /* Structexe
-** Estructure of hierarchical mutagenic & deep proxy reactive , EHM&DPC
+** EN: Hierarchical mutagenic & deep proxy reactive data structures (EHM&DPC)
+** ES: Estructuras de datos jerárquicas mutagénicas y reactivas con proxy profundo (EHM&DPC)
 ** By Pedro Pablo Picado Sánchez
 */
 
-import { ActionChange, datChange, datChangeObj, internal_exe_property, InternalUtils, ManagementReactionObj, processingType, Reaction, ReactionObj, stateAmbitReaction, typeChange, TypeStruct_exe_ } from "./inernalUtils";
+import { ActionChange, datChange, datChangeObj, internal_exe_property, InternalUtils, ManagementReactionObj, processingType, Reaction, ReactionObj, stateAmbitReaction, typeChange, TypeStruct_exe_ } from "./internalUtils";
 export type { ActionChange, datChange, Reaction, TypeStruct_exe_ };
 export { datChangeObj, internal_exe_property, InternalUtils, ManagementReactionObj, processingType, ReactionObj, stateAmbitReaction, typeChange };
 
 /**
  * *************************************************************************** 
  * @class _exe_
- *  Esta clase es la encargada de la gestión jerárquica de datos.
- *  Proporciona métodos para definir, liberar , aplicar trampas proxy y mutar propiedades de objetos.
+ *  EN: This class is responsible for hierarchical data management.
+ *      Provides methods to define, release, apply proxy traps, and mutate object properties.
+ *  ES: Esta clase es la encargada de la gestión jerárquica de datos.
+ *      Proporciona métodos para definir, liberar, aplicar trampas proxy y mutar propiedades de objetos.
  */
 export class _exe_ {
-  static intenal_utils = InternalUtils
+  static internal_utils = InternalUtils
 
   /**
-   * Comprueba si un objeto tiene la propiedad internal_exe_property e implica que es un objeto gestionado por _exe_ con proxy.
-   * @param target Objeto a comprobar.
-   * @returns Verdadero si el objeto tiene la propiedad internal_exe_property, falso en caso contrario.
+   * EN: Checks if an object has the internal_exe_property, implying it is managed by _exe_ with a proxy.
+   * ES: Comprueba si un objeto tiene la propiedad internal_exe_property e implica que es un objeto gestionado por _exe_ con proxy.
+   * @param target EN: Object to check. ES: Objeto a comprobar.
+   * @returns EN: True if the object has internal_exe_property, false otherwise. ES: Verdadero si el objeto tiene la propiedad internal_exe_property, falso en caso contrario.
    */
   static be(target: any): boolean {
     return (target != null && typeof target == 'object' && internal_exe_property in target)
@@ -35,15 +39,16 @@ export class _exe_ {
 
   /**
    * *************************************************************************** 
-   * @method newStruct_exe_ Método que crea una instancia de objeto gestionado 
-   * por _exe_ dependiendo del tipo de objeto de importObj y la retorna como TypeStruct_exe_.
-   * @param importObj Objeto a importar.
-   * @returns {TypeStruct_exe_} Devuelve la instancia creada como TypeStruct_exe_.
-   * @throws Error si el tipo de objeto no es compatible.
+   * @method newStruct_exe_ 
+   *  EN: Method that creates a managed object instance depending on the type of importObj and returns it as TypeStruct_exe_.
+   *  ES: Método que crea una instancia de objeto gestionado por _exe_ dependiendo del tipo de objeto de importObj y la retorna como TypeStruct_exe_.
+   * @param importObj EN: Object to import. ES: Objeto a importar.
+   * @returns {TypeStruct_exe_} EN: Returns the created instance as TypeStruct_exe_. ES: Devuelve la instancia creada como TypeStruct_exe_.
+   * @throws Error EN: if the object type is not compatible. ES: si el tipo de objeto no es compatible.
    */
   static newStruct_exe_<T extends object>(importObj: T, fatherStruct?: TypeStruct_exe_<any>, fatherProperty?: string): TypeStruct_exe_<T> {
-    let typeStruct = _exe_.intenal_utils.gestType(importObj)
-    return _exe_.intenal_utils.newProxy(importObj, typeStruct, fatherStruct, fatherProperty)
+    let typeStruct = _exe_.internal_utils.gestType(importObj)
+    return _exe_.internal_utils.newProxy(importObj, typeStruct, fatherStruct, fatherProperty)
   }
 
   // /**
@@ -54,7 +59,7 @@ export class _exe_ {
   //  */
   // static free<T>(target: T, property: string = ''): T {
   //   if (_exe_.be(target)) {
-  //     switch (_exe_.intenal_utils.gestType(target)) {
+  //     switch (_exe_.internal_utils.gestType(target)) {
   //       case processingType.object:
   //         delete (target as unknown as Object)[property]
   //         break;
@@ -73,31 +78,35 @@ export class _exe_ {
 
   /**
    * *************************************************************************** 
-   * @method defineIfn Metodo que definirá y/o creará condicionalmente una propiedad de 
-   * esta instancia si no está definida , entá definida a Undefined o tiene el valor indicado en el parametro oval.
-   * @param property Nombre de la propiedad
-   * @param value Objeto o valor a asignar
-   * @param oval Valor de la propiedad que asumirá como Undefined , asignando value a la propiedad como si no estubiese definida.
-   * @param muting Indica si se mutará el destino o no.
-   * @returns {TypeStruct_exe_} debuelve el objeto contenedor de la instancia. 
-   * @see define Este método utiliza el metodo define en caso de definir la propiedad     
+   * @method setIfn_ 
+   *  EN: Method that will define and/or conditionally create a property of this instance
+   *      if it is not defined, is defined as Undefined, or has the value indicated in the oval parameter.
+   *  ES: Método que definirá y/o creará condicionalmente una propiedad de esta instancia
+   *      si no está definida, está definida a Undefined o tiene el valor indicado en el parámetro oval.
+   * @param property EN: Property name. ES: Nombre de la propiedad.
+   * @param value EN: Object or value to assign. ES: Objeto o valor a asignar.
+   * @param oval EN: Property value assumed as Undefined, assigning value to the property as if it were not defined. ES: Valor de la propiedad que asumirá como Undefined, asignando value a la propiedad como si no estuviese definida.
+   * @param muting EN: Indicates whether the destination will be mutated or not. ES: Indica si se mutará el destino o no.
+   * @returns {TypeStruct_exe_} EN: Returns the container object of the instance. ES: Devuelve el objeto contenedor de la instancia. 
+   * @see _exe_.set EN: This method uses the set method if the property needs to be defined. ES: Este método utiliza el método set en caso de definir la propiedad.
    */
   static setIfn_<T>(target: T, property: string, value?: any, oval: any = undefined, muting?: boolean): TypeStruct_exe_<T> {
-    let actVal = _exe_.intenal_utils.getByStr(target, property)
-    if (actVal == undefined || actVal.toString() != oval.toString())
+    let actVal = _exe_.internal_utils.getByStr(target, property)
+    if (actVal == undefined || (oval !== undefined && actVal?.toString() !== oval?.toString()))
       _exe_.set(target, property, value, muting)
     return (target as unknown as TypeStruct_exe_<T>)
   }
   /**
    * *************************************************************************** 
-   * @method set Metodo que asignará y/o creará una o varias propiedades de 
-   * esta instancia.
-   * @param target Objeto de destino para la asignación 
-   * @param path Ruta de la propiedad 
-   * @param value Objeto o valor a asignar
-   * @param muting Indica si se mutará el destino o no.
-   * @param transformValue Indica si se transformará el valor al tipo de estructura de destino si existe
-   * @returns {TypeStruct_exe_<T>} debuelve el objeto contenedor de la instancia. 
+   * @method set 
+   *  EN: Method that assigns and/or creates one or more properties of this instance.
+   *  ES: Método que asignará y/o creará una o varias propiedades de esta instancia.
+   * @param target EN: Destination object for the assignment. ES: Objeto de destino para la asignación.
+   * @param path EN: Property path. ES: Ruta de la propiedad.
+   * @param value EN: Object or value to assign. ES: Objeto o valor a asignar.
+   * @param muting EN: Indicates whether the destination will be mutated or not. ES: Indica si se mutará el destino o no.
+   * @param transformValue EN: Indicates whether the value will be transformed to the destination structure type if it exists. ES: Indica si se transformará el valor al tipo de estructura de destino si existe.
+   * @returns {TypeStruct_exe_<T>} EN: Returns the container object of the instance. ES: Devuelve el objeto contenedor de la instancia. 
    */
   static set<T>(thisArg: any, path: string, value: T, muting?: boolean, transformValue: boolean = true): TypeStruct_exe_<T> {
     let returnValue: TypeStruct_exe_<T> = undefined as any
@@ -105,21 +114,24 @@ export class _exe_ {
       throw new Error("El objeto no tiene la propiedad _exe_ o no es compatible con la estructura jerárquica de datos.")
       // PPPS mejorar el mensaje de error
     }
-    // Multiplexa la asignación de la propiedad a través de la ruta jerárquica con comodines
+    // EN: Multiplexes property assignment through the hierarchical path with wildcards.
+    // ES: Multiplexa la asignación de la propiedad a través de la ruta jerárquica con comodines.
     _exe_.route(thisArg, path, (propertyValue: any, propertyName: string, structTarget: any, _exe_Path: string, TypeStruct_exe_: TypeStruct_exe_<any>) => {
-      muting = (muting != undefined) ? muting : (_exe_.intenal_utils.get_exe_(TypeStruct_exe_)?.mutating ?? _exe_.intenal_utils.get_exe_(structTarget)?.mutating);
-      returnValue = _exe_.intenal_utils.setProperty_strict(structTarget, propertyName, value) // PPPS en proceso , muting, transformValue, _exe_Path, TypeStruct_exe_
+      muting = (muting != undefined) ? muting : (_exe_.internal_utils.get_exe_(TypeStruct_exe_)?.mutating ?? _exe_.internal_utils.get_exe_(structTarget)?.mutating);
+      returnValue = _exe_.internal_utils.setProperty_strict(structTarget, propertyName, value, muting, transformValue)
     }, (err: string) => { throw new Error(err) }, undefined, { transformValue: transformValue })
     return returnValue
   }
   /**	
    * ***************************************************************************
-   * Recorre un Objeto por un path y devuelve el valor encontrado o undefined si no lo encuentra.
-   * @param cursor Objeto por el cual se va a recorrer el path
-   * @param path Path por el cual se va a recorrer el cursor
-   * @param callBackfnOk Función que se va a llamar si se encuentra el valor
-   * @param callbackfnKo Función que se va a llamar si no se encuentra el valor
-   * @returns Valor encontrado o undefined si no se encuentra
+   * @method route
+   *  EN: Traverses an Object by a path and returns the found value or undefined if not found.
+   *  ES: Recorre un Objeto por un path y devuelve el valor encontrado o undefined si no lo encuentra.
+   * @param cursor EN: Object to traverse the path. ES: Objeto por el cual se va a recorrer el path.
+   * @param path EN: Path to traverse the cursor. ES: Path por el cual se va a recorrer el cursor.
+   * @param callBackfnOk EN: Function to call if the value is found. ES: Función que se va a llamar si se encuentra el valor.
+   * @param callbackfnKo EN: Function to call if the value is not found. ES: Función que se va a llamar si no se encuentra el valor.
+   * @returns EN: Found value or undefined if not found. ES: Valor encontrado o undefined si no se encuentra.
    */
   static route(cursor: Object, path: string = '', callBackfnOk?: (value: any, property: string, struct: any, _exe_Path: string, TypeStruct_exe_: TypeStruct_exe_<any>) => void, callbackfnKo?: (err: string) => void, altOrigin?: { cursor: Object, path: string, _exe_Path: string, TypeStruct_exe_: TypeStruct_exe_<any> }, options?: { transformValue?: boolean }): any {
     let pathCursor = path
@@ -144,7 +156,7 @@ export class _exe_ {
       if (_exe_.be(cursor)) {
         if (path === '') path = _exe_.path(cursor)
         if (path[0] == '/') {
-          cursor = _exe_.intenal_utils.get_exe_(cursor).rootManagement.root
+          cursor = _exe_.internal_utils.get_exe_(cursor).rootManagement.root
           pathCursor = path.slice((path.length > 1 && path[1] === '|') ? 2 : 1)
         }
       } else if (altOrigin) {
@@ -187,16 +199,18 @@ export class _exe_ {
 
         if (property[0] != '(') {
           let found = false;
-          returnValue = _exe_.intenal_utils.getByStr(cursor, property, () => { found = true; }, (err) => { found = false; })
+          returnValue = _exe_.internal_utils.getByStr(cursor, property, () => { found = true; }, (err) => { found = false; })
 
           if (!found) {
             if (options?.transformValue) {
               if (propertyes.length > 0) {
-                // Auto-vivify intermediate nodes
-                _exe_.intenal_utils.setProperty_strict(cursor, property, {});
+                // EN: Auto-vivify intermediate nodes
+                // ES: Auto-vivificar nodos intermedios
+                _exe_.internal_utils.setProperty_strict(cursor, property, {});
                 returnValue = (cursor as any)[property];
               } else {
-                // Gracefully pass the final missing node for assignment
+                // EN: Gracefully pass the final missing node for assignment
+                // ES: Pasar amablemente el nodo final faltante para asignación
                 returnValue = undefined;
               }
             } else {
@@ -207,7 +221,7 @@ export class _exe_ {
           [keyFind, valueFind] = property.slice(1, property.length - 1).split(':')
           ok = false
           _exe_.forEach(cursor, (value, realKey, stringKey) => {
-            if ((keyFind === '?' || keyFind === stringKey) && (all || valueFind === value.toString())) {
+            if ((keyFind === '?' || keyFind === stringKey) && (all || valueFind === String(value))) {
               ok = true
               iteration = true
               returnValue = _exe_.route(value, propertyes.join('|'), callBackfnOk, callbackfnKo, { cursor: cursor, path: stringKey || '', _exe_Path: _exe_Path!, TypeStruct_exe_: TypeStruct_exe_! }, options)
@@ -217,14 +231,18 @@ export class _exe_ {
         }
       }
 
+      const finalPath = _exe_Path ?? '';
+      const finalStruct = TypeStruct_exe_ ?? cursor;
       if (callbackfnKo && !ok && !iteration) callbackfnKo(`property ${property} not found in "${path}" rest path => ${propertyes.join('|')}`)
-      if (callBackfnOk && ok && !iteration) callBackfnOk(returnValue, property, cursor, _exe_Path!, TypeStruct_exe_!)
+      if (callBackfnOk && ok && !iteration) callBackfnOk(returnValue, property, cursor, finalPath, finalStruct)
       return returnValue
 
     } else {
       if (altOrigin) {
         if (path === '') {
-          if (callBackfnOk) callBackfnOk(cursor, altOrigin.path, altOrigin.cursor, _exe_Path!, TypeStruct_exe_!)
+          const finalPath = _exe_Path ?? altOrigin._exe_Path ?? '';
+          const finalStruct = TypeStruct_exe_ ?? altOrigin.TypeStruct_exe_ ?? cursor;
+          if (callBackfnOk) callBackfnOk(cursor, altOrigin.path, altOrigin.cursor, finalPath, finalStruct)
           return cursor
         }
       }
@@ -233,15 +251,17 @@ export class _exe_ {
   }
 
   /**
-   * Recorre una estructura y ejecuta un callback por cada elemento.
-   * @param target Estructura objetivo (objeto, array, map o set).
-   * @param callbackfn Función a ejecutar por cada elemento.
-   * @param thisArg Contexto opcional para el callback.
+   * @method forEach
+   *  EN: Traverses a structure and executes a callback for each element.
+   *  ES: Recorre una estructura y ejecuta un callback por cada elemento.
+   * @param target EN: Target structure (object, array, map, or set). ES: Estructura objetivo (objeto, array, map o set).
+   * @param callbackfn EN: Function to execute for each element. ES: Función a ejecutar por cada elemento.
+   * @param thisArg EN: Optional context for the callback. ES: Contexto opcional para el callback.
    * @returns void
    */
   static forEach(target: any, callbackfn: (value: any, realKey?: any, stringKey?: string, target?: any) => void, thisArg?: any): void {
     let arrayKeyValues: Array<[value: any, realKey: any, stringKey: string]> = []
-    switch (_exe_.intenal_utils.gestType(target)) {
+    switch (_exe_.internal_utils.gestType(target)) {
       case processingType.object:
         arrayKeyValues = (target != null) ? Object.entries(target).map((item) => [item[1], item[0], item[0].toString()]) : []
         break;
@@ -265,18 +285,20 @@ export class _exe_ {
 
   /**	
    * ***************************************************************************
-   * @method export Exporta propiedades de esta instancia o esta instancia a un objeto plano o a un objeto aportado.
-   * @param thisArg Instancia de la cual se exportaran propiedades
-   * @param property Nombre de la propiedad a exportar
-   * @param targetFill Objeto de destino de la exportación ¡¡ En desarrollo PPPS !!     
-   * @returns Objeto plano o dato simple
+   * @method export
+   *  EN: Exports properties of this instance or this instance to a plain object or to a provided object.
+   *  ES: Exporta propiedades de esta instancia o esta instancia a un objeto plano o a un objeto aportado.
+   * @param thisArg EN: Instance from which properties will be exported. ES: Instancia de la cual se exportarán propiedades.
+   * @param property EN: Name of the property to export. ES: Nombre de la propiedad a exportar.
+   * @param targetFill EN: Target object for the export. ES: Objeto de destino de la exportación.
+   * @returns EN: Plain object or simple data. ES: Objeto plano o dato simple.
    */
   static export(thisArg: any, property: string = '', targetFill?: object | any[] | Map<any, any> | Set<any>): any {
     // PPPS necesita desarrollar mejora de exportación adminiendo rutas desarrollar con route()
-    let origen = (property == '') ? thisArg : _exe_.intenal_utils.getByStr(thisArg, property)
+    let origen = (property == '') ? thisArg : _exe_.internal_utils.getByStr(thisArg, property)
     let target: any = origen
     let descriptor: PropertyDescriptor
-    switch (_exe_.intenal_utils.gestType(origen)) {
+    switch (_exe_.internal_utils.gestType(origen)) {
       case processingType.object: {
         target = new Object()
         _exe_.forEach(origen, (value, realKey) => {
@@ -314,15 +336,17 @@ export class _exe_ {
 
   /**
    * *************************************************************************** 
-   * @method reaction Metodo que creará una reacción.
-   * @param path Ruta de la propiedad a reaccionar.
-   * @param action Acción a ejecutar.
-   * @param component Componente a ejecutar.
-   * @returns {Reaction} debuelve la reacción ejecutada.
+   * @method react
+   *  EN: Method that creates a reaction.
+   *  ES: Método que creará una reacción.
+   * @param path EN: Path of the property to react to. ES: Ruta de la propiedad a reaccionar.
+   * @param action EN: Action to execute. ES: Acción a ejecutar.
+   * @param component EN: Component to execute. ES: Componente a ejecutar.
+   * @returns {Reaction} EN: Returns the executed reaction. ES: Devuelve la reacción ejecutada.
    */
   static react(thisArg: any, path: string | datChangeObj, action: ActionChange, component?: Object): Reaction {
 
-    let manager = _exe_.intenal_utils.get_exe_(thisArg)
+    let manager = _exe_.internal_utils.get_exe_(thisArg)
 
     if (typeof path == 'string') {
       path = (path.indexOf('/') === 0) ? path : manager.path + ((path.indexOf('[') === 0) ? '' : '|') + path
@@ -339,21 +363,25 @@ export class _exe_ {
 
   /**
    * *************************************************************************** 
-   * @method declineReaction Metodo que cancelará una reacción creada con reaction.
-   * @param idReaction Identificador de la reacción.
+   * @method declineReaction
+   *  EN: Method that cancels a reaction created with reaction.
+   *  ES: Método que cancelará una reacción creada con reaction.
+   * @param idReaction EN: Reaction identifier. ES: Identificador de la reacción.
    */
   static declineReact(thisArg: any, idReaction: number | Reaction): Reaction {
-    let manager = _exe_.intenal_utils.get_exe_(thisArg)
+    let manager = _exe_.internal_utils.get_exe_(thisArg)
     return manager.rootManagement.declineReact(idReaction)
   }
 
   /**
    * *************************************************************************** 
-   * @method path Metodo que devolverá la ruta de la instancia.
-   * @returns {string} debuelve la ruta de la instancia. 
+   * @method path
+   *  EN: Method that returns the path of the instance.
+   *  ES: Método que devolverá la ruta de la instancia.
+   * @returns {string} EN: Returns the path of the instance. ES: Devuelve la ruta de la instancia. 
    */
   static path(thisArg: any): string {
-    let manager = _exe_.intenal_utils.get_exe_(thisArg)
+    let manager = _exe_.internal_utils.get_exe_(thisArg)
     return manager.path
   }
 
@@ -361,20 +389,23 @@ export class _exe_ {
 
 export interface ManagementHierarchicalData extends ManagementHierarchicalDataObj, ProtoManagementHierarchicalDataObj { }
 /**
- * @class managementHierarchicalDataObj
- * Datos de gestión para un elemento de estructura tipo Data_exe_
- * Su interfaz seria managementHierarchicalData
- * @see managementHierarchicalData
+ * @class ManagementHierarchicalDataObj
+ *  EN: Management data for a Data_exe_ type structure element.
+ *      Its interface is ManagementHierarchicalData.
+ *  ES: Datos de gestión para un elemento de estructura tipo Data_exe_.
+ *      Su interfaz sería ManagementHierarchicalData.
+ * @see ManagementHierarchicalData
  */
 export class ManagementHierarchicalDataObj {
   /**
-   * Crea una instancia y aplica inicialización de parámetros si se proveen.
-   * @param path Ruta de la estructura
-   * @param structObj Objeto de la estructura
-   * @param proxyObj Objeto proxy de la estructura
-   * @param mutating Indica si se mutará el destino o no.
-   * @param observing Indica si se observará el destino o no.
-   * @param rootManagement Objeto de gestión raiz.
+   * EN: Creates an instance and applies parameter initialization if provided.
+   * ES: Crea una instancia y aplica inicialización de parámetros si se proveen.
+   * @param path EN: Structure path. ES: Ruta de la estructura.
+   * @param structObj EN: Structure object. ES: Objeto de la estructura.
+   * @param proxyObj EN: Proxy object of the structure. ES: Objeto proxy de la estructura.
+   * @param mutating EN: Indicates whether the destination will be mutated or not. ES: Indica si se mutará el destino o no.
+   * @param observing EN: Indicates whether the destination will be observed or not. ES: Indica si se observará el destino o no.
+   * @param rootManagement EN: Root management object. ES: Objeto de gestión raíz.
    */
   constructor(inicialValues?: Partial<ManagementHierarchicalDataObj>) { Object.assign(this, inicialValues) }
   path: string = '/'
@@ -389,38 +420,46 @@ export class ManagementHierarchicalDataObj {
 
 /**
  * @class ProtoManagementHierarchicalDataObj
- * Clase para los nodos de la estructura de datos jerárquica con eventos de cambio profundo.
+ *  EN: Class for nodes of the hierarchical data structure with deep change events.
+ *  ES: Clase para los nodos de la estructura de datos jerárquica con eventos de cambio profundo.
  */
 class ProtoManagementHierarchicalDataObj {
   /**
-   * Crea una instancia base de gestión jerárquica para el prototipo de esta.
+   * EN: Creates a base hierarchical management instance for the prototype of this.
+   * ES: Crea una instancia base de gestión jerárquica para el prototipo de esta.
    */
   constructor() { }
 
   /**
    * *************************************************************************** 
-   * @method setIf_  Metodo que definirá y/o creará condicionalmente una propiedad de 
-   * esta instancia si no está definida , entá definida a Undefined o tiene el valor indicado en el parametro oval.
-   * @param property Nombre de la propiedad
-   * @param value Objeto o valor a asignar
-   * @param oval Valor de la propiedad que asumirá como Undefined , asignando value a la propiedad como si no estubiese definida.
-   * @param muting Indica si se mutará el destino o no.
-   * @returns {Data_exe_} setIf_ debuelve el objeto contenedor de la instancia setIf debuelve valor de la propiedad asignada. 
-   * @see _exe_.set Este método utiliza el metodo set en caso de definir la propiedad     
+   * @method setIf_ 
+   *  EN: Method that will define and/or conditionally create a property of this instance
+   *      if it is not defined, is defined as Undefined, or has the value indicated in the oval parameter.
+   *  ES: Método que definirá y/o creará condicionalmente una propiedad de esta instancia
+   *      si no está definida, está definida a Undefined o tiene el valor indicado en el parámetro oval.
+   * @param property EN: Property name. ES: Nombre de la propiedad.
+   * @param value EN: Object or value to assign. ES: Objeto o valor a asignar.
+   * @param oval EN: Property value assumed as Undefined. ES: Valor de la propiedad que asumirá como Undefined.
+   * @param muting EN: Indicates whether the destination will be mutated or not. ES: Indica si se mutará el destino o no.
+   * @returns {Data_exe_} EN: setIf_ returns the container object of the instance; setIf returns the assigned property value. ES: setIf_ devuelve el objeto contenedor de la instancia; setIf devuelve el valor de la propiedad asignada. 
+   * @see _exe_.set EN: This method uses the set method if the property needs to be defined. ES: Este método utiliza el método set en caso de definir la propiedad.
    */
   public setIf_<T>(property: string, value: T, oval: any = undefined, muting?: boolean): TypeStruct_exe_<T> {
     return _exe_.setIfn_((this as unknown as ManagementHierarchicalData).proxyObj, property || '', value, oval, muting)
   }
   /**
      * *************************************************************************** 
-     * @method setIf Metodo que definirá y/o creará condicionalmente una propiedad de 
-     * esta instancia si no está definida , entá definida a Undefined o tiene el valor indicado en el parametro oval.
-     * @param property Nombre de la propiedad
-     * @param value Objeto o valor a asignar
-     * @param oval Valor de la propiedad que asumirá como Undefined , asignando value a la propiedad como si no estubiese definida.
-     * @param muting Indica si se mutará el destino o no.
-     * @returns {TypeStruct_exe_<T>} Debuelve la propiedad asignada. 
-     * @see _exe_.set Este método utiliza el metodo set en caso de definir la propiedad     
+     * @method setIf 
+     *  EN: Method that will define and/or conditionally create a property of this instance
+     *      if it is not defined, is defined as Undefined, or has the value indicated in the oval parameter.
+     *  ES: Método que definirá y/o creará condicionalmente una propiedad de esta instancia
+     *      si no está definida, está definida a Undefined o tiene el valor indicado en el parámetro oval.
+     * @param property EN: Property name. ES: Nombre de la propiedad.
+     * @param value EN: Object or value to assign. ES: Objeto o valor a asignar.
+     * @param oval EN: Property value assumed as Undefined. ES: Valor de la propiedad que asumirá como Undefined.
+     * @param muting EN: Indicates whether the destination will be mutated or not. ES: Indica si se mutará el destino o no.
+     * @returns {TypeStruct_exe_<T>} EN: Returns the assigned property value. ES: Devuelve la propiedad asignada. 
+     * @see _exe_.set EN: This method uses the set method if the property needs to be defined. ES: Este método utiliza el método set en caso de definir la propiedad.
      */
   public setIf<T>(property: string, value: T, oval: any = undefined, muting?: boolean): TypeStruct_exe_<T> {
     return (_exe_.setIfn_((this as unknown as ManagementHierarchicalData).proxyObj, property || '', value, oval, muting) as TypeStruct_exe_<any>)._exe_.getByStr(property)
@@ -428,21 +467,25 @@ class ProtoManagementHierarchicalDataObj {
 
   /** 
    * ***************************************************************************
-   * @method set_ Metodo que definirá y/o creará una propiedad parseando los datos según parametro y proxeando la estructura. 
-   * @param property Nombre de la propiedad
-   * @param value Objeto o valor a asignar
-   * @param muting Indica si debe de transformar los Objetos de las propiedades en una estructura de DatosObj recursivamente.
-   * @returns {Data_exe_} debuelve el objeto contenedor de la instancia. 
+   * @method set_ 
+   *  EN: Method that defines and/or creates a property parsing data according to parameter and proxying the structure.
+   *  ES: Método que definirá y/o creará una propiedad parseando los datos según parámetro y proxeando la estructura.
+   * @param property EN: Property name. ES: Nombre de la propiedad.
+   * @param value EN: Object or value to assign. ES: Objeto o valor a asignar.
+   * @param muting EN: Indicates whether property objects should be transformed into a DataObj structure recursively. ES: Indica si debe de transformar los Objetos de las propiedades en una estructura de DatosObj recursivamente.
+   * @returns {Data_exe_} EN: Returns the container object of the instance. ES: Devuelve el objeto contenedor de la instancia. 
    */
   public set_<T>(property: string, value: any, muting?: boolean): TypeStruct_exe_<T> {
     return _exe_.set((this as unknown as ManagementHierarchicalData).proxyObj, property, value, muting)
   }
   /**
-   * @method set Define o crea una propiedad y devuelve el valor asignado.
-   * @param property Nombre de la propiedad.
-   * @param value Objeto o valor a asignar.
-   * @param muting Indica si debe transformar objetos en estructura jerárquica.
-   * @returns {TypeStruct_exe_<T>} Valor de la propiedad asignada.
+   * @method set 
+   *  EN: Defines or creates a property and returns the assigned value.
+   *  ES: Define o crea una propiedad y devuelve el valor asignado.
+   * @param property EN: Property name. ES: Nombre de la propiedad.
+   * @param value EN: Object or value to assign. ES: Objeto o valor a asignar.
+   * @param muting EN: Indicates whether objects should be transformed into a hierarchical structure. ES: Indica si debe transformar objetos en estructura jerárquica.
+   * @returns {TypeStruct_exe_<T>} EN: Assigned property value. ES: Valor de la propiedad asignada.
    */
   public set<T>(property: string, value: any, muting?: boolean): TypeStruct_exe_<T> {
     return (_exe_.set((this as unknown as ManagementHierarchicalData).proxyObj, property, value, muting) as TypeStruct_exe_<any>)._exe_.getByStr(property)
@@ -450,22 +493,26 @@ class ProtoManagementHierarchicalDataObj {
 
   /**
    * ***************************************************************************
-   * @method getByStr Devuelve el valor de la propiedad indicada.
-   * @param property Nombre de la propiedad.
-   * @param callBackfnOk Función a ejecutar si se encuentra el valor.
-   * @param callbackfnKo Función a ejecutar si no se encuentra el valor.
-   * @returns {any} Valor de la propiedad indicada o undefined.
+   * @method getByStr 
+   *  EN: Returns the value of the indicated property.
+   *  ES: Devuelve el valor de la propiedad indicada.
+   * @param property EN: Property name. ES: Nombre de la propiedad.
+   * @param callBackfnOk EN: Function to execute if the value is found. ES: Función a ejecutar si se encuentra el valor.
+   * @param callbackfnKo EN: Function to execute if the value is not found. ES: Función a ejecutar si no se encuentra el valor.
+   * @returns {any} EN: Value of the indicated property or undefined. ES: Valor de la propiedad indicada o undefined.
    */
   public getByStr(property: string, callBackfnOk?: (value: any) => void, callbackfnKo?: (err: string) => void): any {
-    return _exe_.intenal_utils.getByStr((this as unknown as ManagementHierarchicalData).proxyObj, property, callBackfnOk, callbackfnKo)
+    return _exe_.internal_utils.getByStr((this as unknown as ManagementHierarchicalData).proxyObj, property, callBackfnOk, callbackfnKo)
   }
 
   /**	
    * ***************************************************************************
-   * @method export Permite exportar propiedades de esta instancia de DatosObj o propiedad a un objeto plano o a un objeto aportado.
-   * @param property Nombre de la propiedad a exportar
-   * @param targetFill Objeto de destino de la exportación ¡¡¡ En desarrollo PPPS!!!
-   * @returns {any} Objeto plano rellenado o dato simple
+   * @method export 
+   *  EN: Allows exporting properties of this DatosObj instance or property to a plain object or to a provided object.
+   *  ES: Permite exportar propiedades de esta instancia de DatosObj o propiedad a un objeto plano o a un objeto aportado.
+   * @param property EN: Name of the property to export. ES: Nombre de la propiedad a exportar.
+   * @param targetFill EN: Target object for the export. ES: Objeto de destino de la exportación.
+   * @returns {any} EN: Plain filled object or simple data. ES: Objeto plano rellenado o dato simple.
    */
   public export(property: string = '', targetFill?: object | any[] | Map<any, any> | Set<any>): any {
     return _exe_.export((this as unknown as ManagementHierarchicalData).proxyObj, property, targetFill)
@@ -477,11 +524,13 @@ class ProtoManagementHierarchicalDataObj {
 
   /**
    * ***************************************************************************
-   * @method react Permite suscribirse a los eventos de cambio de las propiedades de esta instancia de DatosObj o sus hijos.
-   * @param dat Ruta de la propiedad a la que nos suscribimos u objeto con las opciones de la suscripción , 
-   * @param accion Metodo a ejecutar cuando se produce un cambio en la propiedad    
-   * @param thisArg Objeto al que se asignará el contexto this cuando se ejecute la acción 
-   * @returns {Reaction} Subscripcion para desuscribirse del evento y ver estado
+   * @method react 
+   *  EN: Allows subscribing to change events of the properties of this DatosObj instance or its children.
+   *  ES: Permite suscribirse a los eventos de cambio de las propiedades de esta instancia de DatosObj o sus hijos.
+   * @param dat EN: Path of the property to subscribe to, or object with subscription options. ES: Ruta de la propiedad a la que nos suscribimos u objeto con las opciones de la suscripción.
+   * @param accion EN: Method to execute when a change occurs in the property. ES: Método a ejecutar cuando se produce un cambio en la propiedad.
+   * @param thisArg EN: Object to which the this context will be assigned when the action is executed. ES: Objeto al que se asignará el contexto this cuando se ejecute la acción.
+   * @returns {Reaction} EN: Subscription to unsubscribe from the event and check status. ES: Subscripción para desuscribirse del evento y ver estado.
    */
   public react(dat: string | datChange, accion: ActionChange, thisArg?: any): Reaction {
     thisArg = thisArg || (this as unknown as ManagementHierarchicalData).proxyObj
@@ -503,7 +552,8 @@ type ReactionsSubtypeChange<T> = Record<string, T>
 type ReactionsSubStateAmbitReaction<T> = Record<typeChange, ReactionsSubtypeChange<T>>
 type IndexReactions<T> = Record<stateAmbitReaction, ReactionsSubStateAmbitReaction<T>>
 
-// esta función crea un índice de reacciones instanciado con toda la estructura necesaria
+// EN: this function creates a reactions index instantiated with all the necessary structure
+// ES: esta función crea un índice de reacciones instanciado con toda la estructura necesaria
 function createIndexReactions<T>(): IndexReactions<T> {
 
   const indexReactions = {} as IndexReactions<T>
@@ -528,51 +578,56 @@ class bufferReactions {
 
 export interface ManagementReactions extends ManagementReactionsObj { }
 /** @interface ManagementReactionsObj
- * @description Interface of the management of reactions
+ * @description EN: Interface of the management of reactions. ES: Interfaz de la gestión de reacciones.
  */
 export class ManagementReactionsObj {
   /**
-   * Crea un gestor de reacciones asociado a un nodo raíz.
-   * @param rootDatos Nodo raíz de la estructura jerárquica.
+   * EN: Creates a reactions manager associated with a root node.
+   * ES: Crea un gestor de reacciones asociado a un nodo raíz.
+   * @param rootDatos EN: Root node of the hierarchical structure. ES: Nodo raíz de la estructura jerárquica.
    */
   constructor(rootDatos: TypeStruct_exe_<any>) {
     this.root = rootDatos
   }
 
-  /** @property Counter of reactions */
+  /** @property EN: Counter of reactions. ES: Contador de reacciones. */
   private contReactions = 0
-  /** @property Index hierarchical of reactions */
+  /** @property EN: Hierarchical index of reactions. ES: Índice jerárquico de reacciones. */
   private index: IndexReactions<number[]> = createIndexReactions<number[]>()
-  /** @property Buffer of reactions */
+  /** @property EN: Buffer of reactions. ES: Buffer de reacciones. */
   private bufferReactions: bufferReactions = new bufferReactions()
-  /** @property Counter of SubBuffers */
+  /** @property EN: Counter of SubBuffers. ES: Contador de SubBuffers. */
   private contSubBufferReactions = 0
-  /** @property pila de BufferReactios */
+  /** @property EN: Stack of BufferReactions. ES: Pila de BufferReactions. */
   private subBufferReactions: Array<{ id: number, bufferReactions: bufferReactions }> = []
 
-  /** @property list of reactions */
+  /** @property EN: List of reactions. ES: Lista de reacciones. */
   private reactions: Record<number, Reaction> = {}
-  /** @property Root of the hierarchical data */
+  /** @property EN: Root of the hierarchical data. ES: Raíz de los datos jerárquicos. */
   public root!: TypeStruct_exe_<any>
 
-  /** @property List of objects that do not mutate */
+  /** @property EN: List of objects that do not mutate. ES: Lista de objetos que no mutan. */
   public UserNoMutationObjs = []
-  /** @property Flag of mutation general */
+  /** @property EN: General mutation flag. ES: Bandera de mutación general. */
   public modeMutation = true
-  /** @property Flag of observing gets */
+  /** @property EN: Flag of observing gets. ES: Bandera de observación de gets. */
   public observingGets = false
-  /** @property flag for use Buffer of reactions */
+  /** @property EN: Flag for using Buffer of reactions. ES: Bandera para usar Buffer de reacciones. */
   private buffer: boolean = false
 
   /** 
-   * @method getBuffer Obtiene el estado del buffer de reacciones.
-   * @returns Verdadero si el buffer está activo, falso en caso contrario.
+   * @method getBuffer 
+   *  EN: Gets the state of the reactions buffer.
+   *  ES: Obtiene el estado del buffer de reacciones.
+   * @returns EN: True if the buffer is active, false otherwise. ES: Verdadero si el buffer está activo, falso en caso contrario.
    */
   public getBuffer() { return this.buffer }
 
   /** 
-   * @method setBuffer Establece el estado del buffer de reacciones.
-   * @param valor Verdadero para activar el buffer, falso para desactivarlo.
+   * @method setBuffer 
+   *  EN: Sets the state of the reactions buffer.
+   *  ES: Establece el estado del buffer de reacciones.
+   * @param valor EN: True to activate the buffer, false to deactivate. ES: Verdadero para activar el buffer, falso para desactivarlo.
    */
   public setBuffer(valor: boolean) {
     if (!this.buffer && valor) {
@@ -582,7 +637,9 @@ export class ManagementReactionsObj {
   }
 
   /** 
-   * @method pushSubBuffer Añade el buffer al SubBuffer como ultima posición de una pila.   
+   * @method pushSubBuffer 
+   *  EN: Adds the buffer to the SubBuffer as the last position of a stack.
+   *  ES: Añade el buffer al SubBuffer como última posición de una pila.
    */
   public pushSubBuffer(): number {
     this.contSubBufferReactions++
@@ -592,12 +649,14 @@ export class ManagementReactionsObj {
   }
 
   /** 
-   * @method popSubBuffer Extrae el último buffer de reacciones de la pila.
-   * @param id Identificador opcional del buffer a extraer. Si no se proporciona, se extrae el último buffer añadido.
-   * @returns Verdadero si se extrajo el buffer con éxito, falso si no se encontró el buffer.
+   * @method popSubBuffer 
+   *  EN: Extracts the last reactions buffer from the stack.
+   *  ES: Extrae el último buffer de reacciones de la pila.
+   * @param id EN: Optional identifier of the buffer to extract. If not provided, the last added buffer is extracted. ES: Identificador opcional del buffer a extraer. Si no se proporciona, se extrae el último buffer añadido.
+   * @returns EN: True if the buffer was successfully extracted, false if the buffer was not found. ES: Verdadero si se extrajo el buffer con éxito, falso si no se encontró el buffer.
    */
   public popSubBuffer(id?: number): boolean {
-    let subBuffer = (id) ? this.subBufferReactions.find((subBuffer) => subBuffer.id == id) : this.subBufferReactions.pop()
+    let subBuffer = (id !== undefined) ? this.subBufferReactions.find((subBuffer) => subBuffer.id == id) : this.subBufferReactions.pop()
     this.subBufferReactions = this.subBufferReactions.filter((subBuffer) => subBuffer.id != id)
     if (subBuffer) {
       Object.keys(this.bufferReactions.reactions).forEach((key) => {
@@ -613,21 +672,23 @@ export class ManagementReactionsObj {
     }
   }
 
-  /** @method clearBuffer Limpia el buffer de reacciones.
-   * @description Elimina todas las reacciones almacenadas en el buffer.
+  /** @method clearBuffer 
+   * @description EN: Clears the reactions buffer. ES: Limpia el buffer de reacciones.
+   * @description EN: Removes all reactions stored in the buffer. ES: Elimina todas las reacciones almacenadas en el buffer.
    */
   public clearBuffer() {
     this.bufferReactions = new bufferReactions()
   }
 
-  /** @method clearSubBuffer Limpia el buffer de reacciones.
-   * @description Elimina todas las reacciones almacenadas en el SubBuffer especificado.
-   * @param id Identificador opcional del SubBuffer a limpiar. Si no se proporciona, se limpian todos los SubBuffers.
-   * @returns Verdadero si se limpió el SubBuffer con éxito, falso si no se encontró el SubBuffer.
+  /** @method clearSubBuffer 
+   * @description EN: Clears the reactions buffer. ES: Limpia el buffer de reacciones.
+   * @description EN: Removes all reactions stored in the specified SubBuffer. ES: Elimina todas las reacciones almacenadas en el SubBuffer especificado.
+   * @param id EN: Optional identifier of the SubBuffer to clear. If not provided, all SubBuffers are cleared. ES: Identificador opcional del SubBuffer a limpiar. Si no se proporciona, se limpian todos los SubBuffers.
+   * @returns EN: True if the SubBuffer was successfully cleared, false if the SubBuffer was not found. ES: Verdadero si se limpió el SubBuffer con éxito, falso si no se encontró el SubBuffer.
    */
   public clearSubBuffer(id?: number): boolean {
     let returnValue: boolean = false
-    if (!id) this.subBufferReactions = []
+    if (id === undefined) this.subBufferReactions = []
     this.subBufferReactions = this.subBufferReactions.filter((subBuffer) => {
       if (subBuffer.id != id) return true
       else {
@@ -639,17 +700,21 @@ export class ManagementReactionsObj {
   }
 
   /**
-   * @method getContReactions Obtiene el contador interno de reacciones.
-   * @returns Número total de reacciones registradas.
+   * @method getContReactions 
+   *  EN: Gets the internal reactions counter.
+   *  ES: Obtiene el contador interno de reacciones.
+   * @returns EN: Total number of registered reactions. ES: Número total de reacciones registradas.
    */
   public getContReactions() {
     return this.contReactions
   }
 
   /**
-   * @method popReactions Extrae reacciones asociadas a una propiedad o todas si no se indica.
-   * @param propiedad Propiedad de la que se extraen las reacciones.
-   * @returns Lista de reacciones extraídas.
+   * @method popReactions 
+   *  EN: Extracts reactions associated with a property or all if not indicated.
+   *  ES: Extrae reacciones asociadas a una propiedad o todas si no se indica.
+   * @param propiedad EN: Property from which reactions are extracted. ES: Propiedad de la que se extraen las reacciones.
+   * @returns EN: List of extracted reactions. ES: Lista de reacciones extraídas.
    */
   popReactions(propiedad?: string): Reaction[] {
     if (propiedad == undefined) {
@@ -670,11 +735,13 @@ export class ManagementReactionsObj {
   }
 
   /**
-   * @method pushReactions Inserta reacciones en el gestor ajustando sus rutas.
-   * @param reactions Lista de reacciones.
-   * @param ruta Ruta base donde se insertan.
-   * @returns Lista de reacciones insertadas.
-  */
+   * @method pushReactions 
+   *  EN: Inserts reactions into the manager adjusting their paths.
+   *  ES: Inserta reacciones en el gestor ajustando sus rutas.
+   * @param reactions EN: List of reactions. ES: Lista de reacciones.
+   * @param ruta EN: Base path where they are inserted. ES: Ruta base donde se insertan.
+   * @returns EN: List of inserted reactions. ES: Lista de reacciones insertadas.
+   */
   pushReactions(reactions: Reaction[], ruta: string): Reaction[] {
     reactions.forEach((reaction) => {
       this.contReactions++
@@ -686,13 +753,16 @@ export class ManagementReactionsObj {
   }
 
   /** 
-   * @method declineReact Pausa una reacción activa y la mueve al estado pause.
-   * @param id Id de la reacción o la reacción misma.
-   * @returns Reacción pausada.
+   * @method declineReact 
+   *  EN: Pauses an active reaction and moves it to the pause state.
+   *  ES: Pausa una reacción activa y la mueve al estado pause.
+   * @param id EN: Reaction id or the reaction itself. ES: Id de la reacción o la reacción misma.
+   * @returns EN: Paused reaction. ES: Reacción pausada.
    */
   declineReact(id: number | Reaction): Reaction {
     if (typeof id != 'number') id = id.manage.id
     let reaction = this.reactions[id]
+    if (!reaction) throw new Error(`Reaction with id ${id} not found`)
     if (reaction.manage.status != stateAmbitReaction.pause) {
       reaction.manage.status = stateAmbitReaction.pause
       this.index[reaction.change.hito][stateAmbitReaction.pause][reaction.change.ruta].push(id)
@@ -702,12 +772,14 @@ export class ManagementReactionsObj {
   }
 
   /**
-   * @method react Registra o reactiva una reacción para un cambio específico.
-   * @param cambio Objeto de cambio.
-   * @param accion Acción a ejecutar.
-   * @param thisArg Contexto de ejecución.
-   * @param noDie Reservado para futuros comportamientos de persistencia.
-   * @returns Reacción registrada o reactivada.
+   * @method react 
+   *  EN: Registers or reactivates a reaction for a specific change.
+   *  ES: Registra o reactiva una reacción para un cambio específico.
+   * @param cambio EN: Change object. ES: Objeto de cambio.
+   * @param accion EN: Action to execute. ES: Acción a ejecutar.
+   * @param thisArg EN: Execution context. ES: Contexto de ejecución.
+   * @param noDie EN: Reserved for future persistence behaviors. ES: Reservado para futuros comportamientos de persistencia.
+   * @returns EN: Registered or reactivated reaction. ES: Reacción registrada o reactivada.
    */
   react(cambio: datChangeObj, accion: ActionChange, thisArg: any, noDie = false): Reaction {
     let reaction: Reaction | undefined = undefined
@@ -770,8 +842,10 @@ export class ManagementReactionsObj {
 
 
   /**
-   * Ejecuta las reacciones registradas para un cambio.
-   * @param cambio Objeto de cambio.
+   * @method _exe_React
+   *  EN: Executes the registered reactions for a change.
+   *  ES: Ejecuta las reacciones registradas para un cambio.
+   * @param cambio EN: Change object. ES: Objeto de cambio.
    * @returns void
    */
   private _exe_React(dataChange: datChangeObj) {
@@ -815,7 +889,7 @@ export class ManagementReactionsObj {
     }
 
     // si el hito no es change y los datos distintos, ejecutaremos la llamada para change
-    if (dataChange.hito != typeChange.change && _exe_.intenal_utils.stringify(dataChange.datoActual) != _exe_.intenal_utils.stringify(dataChange.datoNuevo)) {
+    if (dataChange.hito != typeChange.change && _exe_.internal_utils.stringify(dataChange.datoActual) != _exe_.internal_utils.stringify(dataChange.datoNuevo)) {
       dataChange.hito = typeChange.change
       this._exe_React(dataChange)
     }

@@ -1,6 +1,7 @@
 /**
  * Structexe - Hierarchical Mutagenic & Deep Proxy Reactive Data Structures
- * Public API barrel export
+ * Estructuras de Datos Jerárquicas Mutagénicas y Reactivas con Proxy Profundo
+ * Public API barrel export / Exportación pública del API
  */
 export {
     _exe_,    
@@ -22,4 +23,4 @@ export {
     type ManagementReaction,    
     type Reaction,
     type datChange,
-} from './inernalUtils';
+} from './internalUtils';

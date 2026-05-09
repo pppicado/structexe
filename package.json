@@ -1,7 +1,7 @@
 {
     "name": "@pppicado/structexe",
     "version": "0.1.0",
-    "description": "Hierarchical mutagenic & deep proxy reactive data structures (EHM&DPC)",
+    "description": "Hierarchical mutagenic & deep proxy reactive data structures (EHM&DPC) / Estructuras de datos jerárquicas mutagénicas y reactivas con proxy profundo (EHM&DPC)",
     "author": "Pedro Pablo Picado Sánchez",
     "license": "MIT",
     "main": "./cjs/index.js",
